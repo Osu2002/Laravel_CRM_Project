@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Invoice List</title>
+    <title>Customer List</title>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -63,7 +63,8 @@
             overflow: hidden;
         }
 
-        th, td {
+        th,
+        td {
             padding: 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -117,7 +118,10 @@
         }
 
         @media (max-width: 768px) {
-            table, th, td {
+
+            table,
+            th,
+            td {
                 font-size: 12px;
                 padding: 10px;
             }
@@ -137,7 +141,7 @@
 </head>
 
 <body>
-    <h2>Invoice List</h2>
+    <h2>Customer List</h2>
 
     @if (session('success'))
         <div class="alert alert-success">
@@ -145,23 +149,36 @@
         </div>
     @endif
 
-    <a href="{{ url('auth/invoice') }}" class="add-customer">Add Invoice</a>
+    <a href="{{ url('auth/customer/customer') }}" class="add-customer">Add Customer</a>
 
     <table>
         <thead>
             <tr>
-
-                <th>Invoice Number</th>
-                <th>Items/Services</th>
-                <th>Total Amount</th>
-                <th>Due Date</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
                 <th>Status</th>
-
+                <th>Edit</th>
+                <th>Delete</th>
 
             </tr>
         </thead>
         <tbody>
 
+            @foreach ($customers as $customer)
+                <tr>
+                    <th scope="row">{{ $customer->id }}</th>
+                    <td>{{ $customer->name }}</td>
+                    <td>{{ $customer->email }}</td>
+                    <td>{{ $customer->phone }}</td>
+                    <td>{{ $customer->address }}</td>
+                    <td>{{ $customer->status }}</td>
+                    <td><a class="edit-button" href="{{ route('customer.edit', $customer->id) }}"> EDIT</a></td>
+                    <td><a class="delete-button" href="{{ route('customer.delete', $customer->id) }}"> DELETE</a></td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </body>

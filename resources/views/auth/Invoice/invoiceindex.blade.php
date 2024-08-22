@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Proposal List</title>
+    <title>Invoice List</title>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -63,7 +63,8 @@
             overflow: hidden;
         }
 
-        th, td {
+        th,
+        td {
             padding: 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -117,7 +118,10 @@
         }
 
         @media (max-width: 768px) {
-            table, th, td {
+
+            table,
+            th,
+            td {
                 font-size: 12px;
                 padding: 10px;
             }
@@ -137,7 +141,7 @@
 </head>
 
 <body>
-    <h2>Proposal List</h2>
+    <h2>Invoice List</h2>
 
     @if (session('success'))
         <div class="alert alert-success">
@@ -145,23 +149,39 @@
         </div>
     @endif
 
-    <a href="{{ url('auth/proposal') }}" class="add-customer">Add Proposal</a>
+    <a href="{{ url('auth/Invoice/invoice') }}" class="add-customer">Add Invoice</a>
 
     <table>
         <thead>
             <tr>
 
-                <th>Customer</th>
-                <th>Proposal Title</th>
-                <th>Description</th>
+                <th>ID</th>
+                <th>Invoice Number</th>
+                <th>Items/Services</th>
+                <th>Total Amount</th>
+                <th>Due Date</th>
                 <th>Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
 
 
             </tr>
         </thead>
         <tbody>
-            <!-- Add dynamic rows here -->
+
         </tbody>
+        @foreach ($invoices as $invoice)
+            <tr>
+                <th scope="row">{{ $invoice->id }}</th>
+                <td>{{ $invoice->invoice_number }}</td>
+                <td>{{ $invoice->items }}</td>
+                <td>{{ $invoice->total }}</td>
+                <td>{{ $invoice->due_date }}</td>
+                <td>{{ $invoice->status }}</td>
+                <td><a class="edit-button" href="{{ route('Invoice.edit', $invoice->id) }}"> EDIT</a></td>
+                <td><a class="delete-button" href="{{ route('Invoice.delete', $invoice->id) }}"> DELETE</a></td>
+            </tr>
+        @endforeach
     </table>
 </body>
 

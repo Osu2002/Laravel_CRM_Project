@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Customer List</title>
+    <title>Proposal List</title>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -63,7 +63,8 @@
             overflow: hidden;
         }
 
-        th, td {
+        th,
+        td {
             padding: 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -117,7 +118,10 @@
         }
 
         @media (max-width: 768px) {
-            table, th, td {
+
+            table,
+            th,
+            td {
                 font-size: 12px;
                 padding: 10px;
             }
@@ -137,7 +141,7 @@
 </head>
 
 <body>
-    <h2>Customer List</h2>
+    <h2>Proposal List</h2>
 
     @if (session('success'))
         <div class="alert alert-success">
@@ -145,24 +149,34 @@
         </div>
     @endif
 
-    <a href="{{ url('auth/customer') }}" class="add-customer">Add Customer</a>
+    <a href="{{ url('auth/Proposal/proposal') }}" class="add-customer">Add Proposal</a>
 
     <table>
         <thead>
             <tr>
-
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Address</th>
+                <th>ID</th>
+                <th>Customer</th>
+                <th>Proposal Title</th>
+                <th>Description</th>
                 <th>Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+
 
             </tr>
         </thead>
         <tbody>
-          <!-- Assuming you have a list of customers passed to this view -->
-
-          
+            @foreach ($proposals as $proposal)
+                <tr>
+                    <th scope="row">{{ $proposal->id }}</th>
+                    <td>{{ $proposal->customer_id }}</td>
+                    <td>{{ $proposal->title }}</td>
+                    <td>{{ $proposal->description }}</td>
+                    <td>{{ $proposal->status }}</td>
+                    <td><a class="edit-button" href="{{ route('Proposal.edit', $proposal->id) }}"">EDIT</a></td>
+                    <td><a class="delete-button" href="{{ route('Proposal.delete', $proposal->id) }}"> DELETE</a></td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </body>

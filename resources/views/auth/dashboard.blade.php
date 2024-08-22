@@ -100,9 +100,9 @@
         <h2>Dashboard</h2>
         <ul class="nav-links">
             <li><a href="{{ url('auth/dashboard') }}">Home</a></li>
-            <li><a href="{{ url('auth/customerindex') }}">Customers</a></li>
-            <li><a href="{{ url('auth/proposalindex') }}">Proposals</a></li>
-            <li><a href="{{ url('auth/invoiceindex') }}">Invoices</a></li>
+            <li><a href="{{ url('auth/customer/customerindex') }}">Customers</a></li>
+            <li><a href="{{ url('auth/Proposal/proposalindex') }}">Proposals</a></li>
+            <li><a href="{{ url('auth/Invoice/invoiceindex') }}">Invoices</a></li>
         </ul>
         <div class="profile">
             <img src="https://via.placeholder.com/40" alt="Profile Picture">
