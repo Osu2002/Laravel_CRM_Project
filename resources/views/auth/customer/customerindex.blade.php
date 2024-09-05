@@ -141,6 +141,7 @@
 </head>
 
 <body>
+
     <h2>Customer List</h2>
 
     @if (session('success'))
@@ -148,6 +149,9 @@
             {{ session('success') }}
         </div>
     @endif
+    <li class="nav-item">
+        <a href="{{ url('dashboard') }}" class="nav-link">Home</a>
+    </li>
 
     <a href="{{ url('auth/customer/customer') }}" class="add-customer">Add Customer</a>
 
@@ -162,6 +166,9 @@
                 <th>Status</th>
                 <th>Edit</th>
                 <th>Delete</th>
+                <th>Invoice</th>
+
+
 
             </tr>
         </thead>
@@ -177,6 +184,8 @@
                     <td>{{ $customer->status }}</td>
                     <td><a class="edit-button" href="{{ route('customer.edit', $customer->id) }}"> EDIT</a></td>
                     <td><a class="delete-button" href="{{ route('customer.delete', $customer->id) }}"> DELETE</a></td>
+                    <td><a class="edit-button" href="{{ route('invoice.add', $customer->id) }}"> INVOICE</a></td>
+
                 </tr>
             @endforeach
         </tbody>

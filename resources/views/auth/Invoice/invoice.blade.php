@@ -14,10 +14,15 @@
     <h2>Invoice</h2>
     <form method="POST" action="{{ route('invoice.invoicestore') }}" method ="POST">
         @csrf
-
-        <label for="invoice_number">Invoice Number:</label>
-        <input type="text" id="invoice_number" name="invoice_number" placeholder="Enter Invoice Number"
-            required><br><br>
+        <label for="items">Customer Name:</label>
+        <select name="name" id="name"required>
+            <option value="">Select name</option>
+            @foreach ($customers as $customer)
+                <option value="{{ $customer->id }}" {{ old('name') == $customer->name ? 'selected' : '' }}>
+                    {{ $customer->name }}
+                </option>
+            @endforeach
+        </select>
 
         <label for="items">Items/Services:</label>
         <textarea id="items" name="items" placeholder="Describe the items/services" required></textarea><br><br>

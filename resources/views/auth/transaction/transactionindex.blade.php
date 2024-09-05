@@ -140,50 +140,56 @@
     </style>
 </head>
 
-<body>
-    <h2>Invoice List</h2>
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-    <li class="nav-item">
-        <a href="{{ url('dashboard') }}" class="nav-link">Home</a>
-    </li>
-    <a href="{{ url('auth/Invoice/invoice') }}" class="add-customer">Add Invoice</a>
+        <body>
+            <h2>Transaction List</h2>
 
-    <table>
-        <thead>
-            <tr>
-
-                <th>Invoice ID</th>
-                <th>Customer ID</th>
-                <th>Items/Services</th>
-                <th>Total Amount</th>
-                <th>Due Date</th>
-                <th>Status</th>
-                <th>Edit</th>
-                <th>Delete</th>
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <li class="nav-item">
+                <a href="{{ url('dashboard') }}" class="nav-link">Home</a>
+            </li>
 
 
-            </tr>
-        </thead>
-        <tbody>
+            <table>
+                <thead>
+                    <tr>
 
-        </tbody>
-        @foreach ($invoices as $invoice)
-            <tr>
-                <th scope="row">{{ $invoice->id }}</th>
-                <td>{{ $invoice->name}}</td>
-                <td>{{ $invoice->items }}</td>
-                <td>{{ $invoice->total }}</td>
-                <td>{{ $invoice->due_date }}</td>
-                <td>{{ $invoice->status }}</td>
-                <td><a class="edit-button" href="{{ route('Invoice.edit', $invoice->id) }}"> EDIT</a></td>
-                <td><a class="delete-button" href="{{ route('Invoice.delete', $invoice->id) }}"> DELETE</a></td>
-            </tr>
-        @endforeach
+                        <th>Invoice ID</th>
+                        <th>Customer ID</th>
+                        <th>Items/Services</th>
+                        <th>Total Amount</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($invoices as $invoice)
+                    <tr>
+                        <th scope="row">{{ $invoice->id }}</th>
+                        <td>{{ $invoice->name}}</td>
+                        <td>{{ $invoice->items }}</td>
+                        <td>{{ $invoice->total }}</td>
+                        <td>{{ $invoice->due_date }}</td>
+                        <td>{{ $invoice->status }}</td>
+                        <td><a class="edit-button" href="{{ route('Invoice.edit', $invoice->id) }}"> EDIT</a></td>
+                        <td><a class="delete-button" href="{{ route('Invoice.delete', $invoice->id) }}"> DELETE</a></td>
+                    </tr>
+                @endforeach
+                </tbody>
+
+            </table>
+        </body>
+
+        </html>
+
     </table>
 </body>
 

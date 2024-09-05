@@ -148,7 +148,9 @@
             {{ session('success') }}
         </div>
     @endif
-
+    <li class="nav-item">
+        <a href="{{ url('dashboard') }}" class="nav-link">Home</a>
+    </li>
     <a href="{{ url('auth/Proposal/proposal') }}" class="add-customer">Add Proposal</a>
 
     <table>
@@ -169,7 +171,7 @@
             @foreach ($proposals as $proposal)
                 <tr>
                     <th scope="row">{{ $proposal->id }}</th>
-                    <td>{{ $proposal->customer_id }}</td>
+                    <td>{{ $proposal->name }}</td>
                     <td>{{ $proposal->title }}</td>
                     <td>{{ $proposal->description }}</td>
                     <td>{{ $proposal->status }}</td>

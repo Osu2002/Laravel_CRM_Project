@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -22,6 +23,8 @@ class CustomerController extends Controller
         return view('auth.customer.customerindex', compact('customers'));
     }
 
+
+
     public function store(Request $request)
     {
         $customer = new Customer();
@@ -30,6 +33,7 @@ class CustomerController extends Controller
         $customer->phone = $request->phone;
         $customer->address = $request->address;
         $customer->status = $request->status;
+
         $customer->save();
 
         return redirect()->route('customer.index');
@@ -40,6 +44,8 @@ class CustomerController extends Controller
         $customer = Customer::where('id', $customer_id)->first();
         return view('auth.customer.edit', compact('customer'));
     }
+
+
 
     public function update(Request $request, $customer_id)
     {
@@ -53,8 +59,9 @@ class CustomerController extends Controller
         return redirect()->route('customer.index');
     }
 
-    public function delete($customer_id){
-        Customer::where('id',$customer_id)->delete();
+    public function delete($customer_id)
+    {
+        Customer::where('id', $customer_id)->delete();
         return redirect()->route('customer.index');
     }
 }

@@ -95,4 +95,30 @@ button[type="submit"]:hover {
     color: black; /* Black text on hover */
     border: 2px solid #4CAF50; /* Green border on hover */
 }
+.nav-item {
+    list-style-type: none;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #007bff;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link:active {
+    background-color: #0056b3;
+    color: white;
+}
 

@@ -15,9 +15,9 @@
     <form method="POST" action="{{ route('invoice.invoicestore') }}" method ="POST">
         @csrf
 
-        <label for="invoice_number">Invoice Number:</label>
-        <input type="text" id="invoice_number" name="invoice_number"
-            value ="{{ $invoice->invoice_number }}"placeholder="Enter Invoice Number" required><br><br>
+        <label for="name">Customer ID:</label>
+        <input type="text" id="name" name="name" placeholder="Enter Name" required
+            value ="{{ $invoice->name }}"placeholder="Enter Name" ><br><br>
 
         <label for="items">Items/Services:</label>
         <textarea id="items" name="items" placeholder="Describe the items/services" required>{{ $invoice->items }}</textarea><br><br>

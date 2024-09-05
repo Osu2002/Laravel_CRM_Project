@@ -3,7 +3,7 @@
 
 <head>
 
-    <link rel="stylesheet" href="{{ url('css/proposal.css') }}">
+    <link rel="stylesheet" href="{{ url('css/invoice.css') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -15,10 +15,15 @@
     <form method="POST" action="{{ route('proposal.proposalstore') }}" method ="POST">
         @csrf
 
-        <label for="customer_id">Customer:</label>
-        <input type="text" id="customer_id" name="customer_id"placeholder="Enter the customer"required>
-        <!-- Populate with customer options -->
-        <br><br>
+        <label for="id">Customer ID:</label>
+        <select name="name" required>
+            <option value="">Select ID</option>
+            @foreach ($customers as $customer)
+                <option value="{{ $customer->id }}" {{ old('name') == $customer->id ? 'selected' : '' }}>
+                    {{ $customer->id }}
+                </option>
+            @endforeach
+        </select>
 
         <label for="title">Proposal Title:</label>
         <input type="text" id="title" name="title"placeholder="Enter the title" required><br><br>

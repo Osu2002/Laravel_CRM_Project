@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Proposal;
 use Illuminate\Http\Request;
+use App\Models\Customer;
 
 class ProposalController extends Controller
 {
     public function proposal()
     {
-        return view('auth.Proposal.proposal');
+        $customers = Customer::all();
+        return view('auth.Proposal.proposal',compact('customers'));
     }
     public function proposalindex()
     {
@@ -22,7 +24,7 @@ class ProposalController extends Controller
     {
 
         $proposal = new Proposal();
-        $proposal->customer_id = $request->customer_id;
+        $proposal->name = $request->name;
         $proposal->title = $request->title;
         $proposal->description = $request->description;
         $proposal->status = $request->status;
@@ -40,7 +42,7 @@ class ProposalController extends Controller
     public function update(Request $request, $proposal_id)
     {
         $proposal = Proposal::where('id', $proposal_id)->first();
-        $proposal->customer_id = $request->customer_id;
+        $proposal->name = $request->name;
         $proposal->title = $request->title;
         $proposal->description = $request->description;
         $proposal->status = $request->status;

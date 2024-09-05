@@ -10,16 +10,16 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f7f6;
+            background-color: #aaf0d8;
         }
 
         .navbar {
-            background-color: #34495e;
+            background-color: #75a9ec;
             padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: white;
+            color: rgb(235, 173, 173);
         }
 
         .navbar h2 {
@@ -52,29 +52,16 @@
         .profile {
             display: flex;
             align-items: center;
+
         }
 
-        .profile img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
+
 
         .profile div {
             margin-right: 20px;
         }
 
-        .logout-btn {
-            background-color: #e74c3c;
-            color: white;
-            padding: 8px 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-decoration: none;
-        }
+
 
         .logout-btn:hover {
             background-color: #c0392b;
@@ -99,19 +86,13 @@
     <div class="navbar">
         <h2>Dashboard</h2>
         <ul class="nav-links">
-            <li><a href="{{ url('auth/dashboard') }}">Home</a></li>
+            <li><a href="{{ url('dashboard') }}">Home</a></li>
             <li><a href="{{ url('auth/customer/customerindex') }}">Customers</a></li>
             <li><a href="{{ url('auth/Proposal/proposalindex') }}">Proposals</a></li>
             <li><a href="{{ url('auth/Invoice/invoiceindex') }}">Invoices</a></li>
+            <li><a href="{{ url('auth/Invoice/invoiceindex') }}">Transaction</a></li>
         </ul>
-        <div class="profile">
-            <img src="https://via.placeholder.com/40" alt="Profile Picture">
-            <div>
-                <strong>John Doe</strong><br>
-                <span>johndoe@example.com</span>
-            </div>
-            <a href="#" class="logout-btn">Logout</a>
-        </div>
+
     </div>
 
     <div class="main-content">

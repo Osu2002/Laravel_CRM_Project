@@ -5,6 +5,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProposalController;
+use App\Http\Controllers\TransactionController;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,13 +26,22 @@ Route::get('/', function () {
 });
 
 
+Auth::routes([
+    'verify' => true
+]);
 
 
-Route::get('/dashboard', [DashboardController::class, 'dashboard']);
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('auth/customer/customer', [CustomerController::class, 'customer']);
 Route::get('auth/Proposal/proposal', [ProposalController::class, 'proposal']);
-Route::get('auth/Invoice/invoice', [InvoiceController::class, 'invoice']);
+Route::get('auth/Invoice/invoice', [InvoiceController::class, 'invoice'])->name('invoice.add');
 Route::get('auth/customer/customerindex', [CustomerController::class, 'customerindex'])->name('auth.customer.customerindex');
+
 
 
 
@@ -45,7 +57,9 @@ Route::get('/auth/Invoice/invoiceindex', function () {
     return view('auth.Invoice.invoiceindex');
 });
 
+
 Route::get('/auth/Invoice/invoiceindex', [InvoiceController::class, 'invoiceindex'])->name('invoice.index');
+
 Route::get('/auth/customer/customerindex', [CustomerController::class, 'customerindex'])->name('customer.index');
 Route::get('/auth/Proposal/proposalindex', [ProposalController::class, 'proposalindex'])->name('proposal.index');
 
@@ -71,12 +85,25 @@ Route::post('auth/invoicestore', [InvoiceController::class, 'store'])->name('inv
 
 
 
+Route::get('/auth/transaction/transactionindex', [TransactionController::class, 'invoiceindex'])->name('transaction.index');
+Route::get('/auth/transaction/invoice', [TransactionController::class, 'invoice'])->name('transaction.invoice');
+Route::post('/auth/transaction/store', [TransactionController::class, 'store'])->name('transaction.store');
 
 Route::middleware('auth')->group(function () {
 
+    Route::get('/logout', [ProfileController::class, 'logout'])->name('admin.logout');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+
+
+Route::controller(InvoiceController::class)->group(function () {
+
+    Route::get('stripe/{id}', 'stripe');
+
+    Route::post('stripe/{id}', 'stripePost')->name('stripe.post');
+});
 require __DIR__ . '/auth.php';

@@ -16,8 +16,8 @@
         @method('PUT')
         @csrf
 
-        <label for="customer_id">Customer:</label>
-        <input type="text" id="customer_id" name="customer_id" value ="{{ $proposal->customer_id }}"placeholder="Enter the customer"required>
+        <label for="name">Customer ID:</label>
+        <input type="text" id="name" name="name" value ="{{ $proposal->name }}"placeholder="Enter the customer ID"required>
         <!-- Populate with customer options -->
         <br><br>
 
